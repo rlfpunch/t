@@ -20,9 +20,9 @@ node - node-v6.11.3-x64
 
 받아서 maven project로 import
 
-root 에서 'mvn package install'
+angular-cli 이걸로 깔고 'npm i -g @angular/cli'
 
-Angular-Full-Stack 폴더안에서 'npm i -g @angular/cli' 이후 'npm i'
+root 에서 'mvn package install'
 
 -------------------------------------------------------------------------------------------
 실행)
