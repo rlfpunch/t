@@ -34,6 +34,7 @@ export default function setRoutes(app) {
   router.route('/user/:id').get(userCtrl.get);
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id/:userId').delete(userCtrl.isAdmin, userCtrl.delete);
+  router.route('/user/apikey/:id').put(userCtrl.deleteApiKey);
   
   // algorithms
   router.route('/algorithms/:userId').get(algorithmCtrl.getAll);

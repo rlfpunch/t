@@ -64,23 +64,35 @@ export default class UserCtrl extends BaseCtrl {
   get = (req, res) => {
     this.model.findOne({ _id: req.params.id }, (err, obj) => {
       if (err) { return console.error(err); }
-      if(obj.apiKey){
+      if(obj.apiKey && obj.apiKey !== ""){
           obj.apiKey = 'Saved';
       }
       res.json(obj);
     });
   }
   
-//Get all
+  //Get all
   getAll = (req, res) => {
     this.model.find({}, (err, docs) => {
       if (err) { return console.error(err); }
       docs.forEach(obj => {
-          if(obj.apiKey){
+          if(obj.apiKey && obj.apiKey !== ""){
               obj.apiKey = 'Saved';
           }
       });
       res.json(docs);
+    });
+  }
+  
+  //Delete by id
+  deleteApiKey = (req, res) => {
+    this.model.findOne({ _id: req.params.id }, (err, user) => {
+      if (!user) { return console.error(err); }
+      user.apiKey = '';
+      this.model.findOneAndUpdate({ _id: user._id }, user, (err) => {
+          if (err) { return console.error(err); }
+          res.sendStatus(200);
+      });
     });
   }
 }

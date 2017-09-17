@@ -5,20 +5,20 @@
 <div class="card" *ngIf="!isLoading">
   <h4 class="card-header">Account settings</h4>
   <div class="card-block">
-    <form #accountForm="ngForm" (ngSubmit)="save(user)">
+    <form #accountForm="ngForm">
       <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user"></i></span>
         <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username" required>
       </div>
       <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-        <input class="form-control" type="email" name="email" [(ngModel)]="user.email" placeholder="Email" required>
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+        <span class="input-group-addon"><i class="fa fa-btc"></i></span>
         <input class="form-control" type="apiKey" name="apiKey" [(ngModel)]="user.apiKey" placeholder="Api Key">
+        <button class="btn btn-sm btn-danger" (click)="deleteApiKey(user)" [disabled]="!user.apiKey"
+        		style="position: absolute;top: 5px;right: 6px;z-index: 10;">
+          <i class="fa fa-trash"></i>
+        </button>
       </div>
-      <button class="btn btn-primary" type="submit" [disabled]="!accountForm.form.valid">
+      <button class="btn btn-primary" (click)="save(user)" [disabled]="!accountForm.form.valid">
         <i class="fa fa-save"></i> Save
       </button>
     </form>

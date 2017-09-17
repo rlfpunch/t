@@ -44,4 +44,7 @@ export class UserService {
     return this.http.delete(`/api/user/${user._id}/` + userId, this.options);
   }
 
+  deleteApiKey(user): Observable<any> {
+      return this.http.put(`/api/user/apikey/${user._id}`, this.options);
+  }
 }

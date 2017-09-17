@@ -32,8 +32,16 @@ export class AccountComponent implements OnInit {
   save(user) {
     this.userService.editUser(user).subscribe(
       res => this.toast.setMessage('account settings saved!', 'success'),
-      error => console.log(error)
+      error => console.log(error),
+      () => user.apiKey = user.apiKey? 'Saved':null
     );
   }
 
+  deleteApiKey(user) {
+      this.userService.deleteApiKey(user).subscribe(
+        res => this.toast.setMessage('delete api key!', 'success'),
+        error => console.log(error),
+        () => user.apiKey = null
+      );
+  }
 }
