@@ -6,6 +6,7 @@ import { AlgorithmService } from '../services/algorithm.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 
 import { AuthService } from '../services/auth.service';
+import { SiteService } from '../services/site.service';
 
 @Component({
   selector: 'app-algorithms',
@@ -18,6 +19,8 @@ export class AutotraiderComponent implements OnInit {
   algorithms = [];
   isLoading = true;
   isEditing = false;
+  
+  sites = [];
 
   addAlgorithmForm: FormGroup;
   userId = new FormControl(this.auth.currentUser._id, Validators.required);
@@ -25,12 +28,14 @@ export class AutotraiderComponent implements OnInit {
   site = new FormControl('', Validators.required);
 
   constructor(private algorithmService: AlgorithmService,
+              private siteService: SiteService,
               private auth: AuthService,
               private formBuilder: FormBuilder,
               private http: Http,
               public toast: ToastComponent) { }
 
   ngOnInit() {
+    this.getSites();
     this.getAlgorithms();
     this.addAlgorithmForm = this.formBuilder.group({
       userId: this.userId,
@@ -38,7 +43,19 @@ export class AutotraiderComponent implements OnInit {
       site: this.site      
     });
   }
+  
+  getSites() {
+      this.siteService.getSites().subscribe(
+        data => this.sites = data,
+        error => console.log(error),
+        () => this.siteMapping()
+      );
+    }
 
+  siteMapping(){
+      
+  }
+  
   getAlgorithms() {
     this.algorithmService.getAlgorithms(this.auth.currentUser).subscribe(
       data => this.algorithms = data,

@@ -18,4 +18,14 @@ export default class UserCtrl extends BaseCtrl {
     });
   }
 
+  isAdmin = (req, res, next) => {
+      this.model.findOne({ _id: req.params.userId }, (err, user) => {
+          if (!user) { return res.sendStatus(403); }
+          if(user.role === 'admin'){
+              return next();
+          }else{
+              return res.sendStatus(403);
+          }
+      });
+  }
 }

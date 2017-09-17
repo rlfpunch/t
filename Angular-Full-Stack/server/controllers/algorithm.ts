@@ -6,7 +6,7 @@ export default class AlgorithmCtrl extends BaseCtrl {
   
   //Get all
   getAll = (req, res) => {
-    this.model.find({userId:req.params.id}, (err, docs) => {
+    this.model.find({userId:req.params.userId}, (err, docs) => {
       if (err) { return console.error(err); }
       res.json(docs);
     });
