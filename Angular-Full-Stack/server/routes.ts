@@ -3,9 +3,11 @@ import * as express from 'express';
 import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
 import AlgorithmCtrl  from './controllers/algorithm';
+import SiteCtrl  from './controllers/site';
 import Cat from './models/cat';
 import User from './models/user';
 import Algorithm from './models/algorithm';
+import Site from './models/site';
 
 export default function setRoutes(app) {
 
@@ -14,6 +16,7 @@ export default function setRoutes(app) {
   const catCtrl = new CatCtrl();
   const userCtrl = new UserCtrl();
   const algorithmCtrl = new AlgorithmCtrl();
+  const siteCtrl = new SiteCtrl();
 
   // Cats
   router.route('/cats').get(catCtrl.getAll);
@@ -39,6 +42,14 @@ export default function setRoutes(app) {
   router.route('/algorithm/:id').get(algorithmCtrl.get);
   router.route('/algorithm/:id').put(algorithmCtrl.update);
   router.route('/algorithm/:id').delete(algorithmCtrl.delete);
+  
+  // site
+  router.route('/sites').get(siteCtrl.getAll);
+  router.route('/sites/count').get(siteCtrl.count);
+  router.route('/site').post(siteCtrl.insert);
+  router.route('/site/:id').get(siteCtrl.get);
+  router.route('/site/:id').put(siteCtrl.update);
+  router.route('/site/:id').delete(siteCtrl.delete);
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);

@@ -1,0 +1,124 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Current sites ({{sites.length}})</h4>
+  <div class="card-block">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>Name</th>
+          <th>Wallet Url</th>
+          <th>Order Url</th>
+          <th>Orders Url</th>
+        </tr>
+        <tr>
+          <th>Order Detail Url</th>
+          <th>Cancel Url</th>
+          <th>MarketBuy Url</th>
+          <th>MarKetSell Url</th>
+        </tr>
+        <tr>
+          <th colspan="4">Currencies</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="sites.length === 0">
+        <tr>
+          <td colspan="4">There are no sites in the DB. Add a new site below.</td>
+        </tr>  
+      </tbody>
+      <tbody *ngIf="!isEditing">
+        <ng-container *ngFor="let site of sites let i=index">
+		   <tr>
+		   	  <td>{{site.name}}</td>
+	          <td>{{site.walletUrl}}</td>
+	          <td>{{site.orderUrl}}</td>
+	          <td>{{site.ordersUrl}}</td>
+	          <td rowspan="3">
+	            <button class="btn btn-sm btn-warning" (click)="enableEditing(site)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteSite(site)"><i class="fa fa-trash"></i> Delete</button>
+	          </td>
+		   </tr>
+		   <tr>
+		   	  <td>{{site.orderDetailUrl}}</td>
+	          <td>{{site.cancelUrl}}</td>
+	          <td>{{site.marketBuyUrl}}</td>
+	          <td>{{site.marketSellUrl}}</td>
+		   </tr>
+		   <tr>
+		   	  <td colspan="4"><span *ngFor="let currency of site.currencies">{{currency}} </span></td>
+		   </tr>
+		</ng-container>
+      </tbody>
+      <tbody *ngIf="isEditing">
+        <tr>
+          <td colspan="4">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editSite(site)" style="display:inline">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="name" [(ngModel)]="site.name" placeholder="Name" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="walletUrl" [(ngModel)]="site.walletUrl" placeholder="Wallet Url" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="orderUrl" [(ngModel)]="site.orderUrl" placeholder="Order Url" step="any" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="ordersUrl" [(ngModel)]="site.ordersUrl" placeholder="Orders Url" step="any" required>
+              </div>
+              <br>
+              <div class="form-group">
+                  <input class="form-control" type="text" name="orderDetailUrl" [(ngModel)]="site.orderDetailUrl" placeholder="Order Detail Url" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="cancelUrl" [(ngModel)]="site.cancelUrl" placeholder="Cancel Url" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="marketBuyUrl" [(ngModel)]="site.marketBuyUrl" placeholder="MarketBuy Url" step="any"required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="marketSellUrl" [(ngModel)]="site.marketSellUrl" placeholder="MarketSell Url" step="any"required>
+              </div>
+              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+            </form>
+            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card" *ngIf="!isEditing">
+  <h4 class="card-header">Add new site</h4>
+  <div class="card-block">
+    <form class="form-inline" [formGroup]="addSiteForm" (ngSubmit)="addSite()" style="text-align:center">
+      <div class="form-group">
+          <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="walletUrl" formControlName="walletUrl" placeholder="Wallet Url">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="orderUrl" formControlName="orderUrl" placeholder="Order Url">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="ordersUrl" formControlName="ordersUrl" placeholder="Orders Url">
+      </div>
+      <br>
+      <div class="form-group">
+          <input class="form-control" type="text" name="orderDetailUrl" formControlName="orderDetailUrl" placeholder="Order Detail Url">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="cancelUrl" formControlName="cancelUrl" placeholder="Cancel Url">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="marketBuyUrl" formControlName="marketBuyUrl" placeholder="MarketBuy Url">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="marketSellUrl" formControlName="marketSellUrl" placeholder="MarketSell Url">
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!addSiteForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+    </form>
+  </div>
+</div>
