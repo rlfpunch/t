@@ -51,7 +51,6 @@ export class AuthService {
     this.currentUser.username = decodedUser.username;
     this.currentUser.lv = decodedUser.lv;
     decodedUser.email === 'admin'? this.isAdmin = true : this.isAdmin = false;
-    delete decodedUser.role;
   }
 
 }
