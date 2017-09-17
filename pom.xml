@@ -112,6 +112,7 @@
         <module>core</module>
         <module>batch/bithumbCollector</module>
         <module>batch/execution</module>
+        <module>Angular-Full-Stack</module>
       </modules>
       <build>
         <pluginManagement>
@@ -135,6 +136,7 @@
         <module>core</module>
         <module>batch/bithumbCollector</module>
         <module>batch/execution</module>
+        <module>Angular-Full-Stack</module>
  </modules>
       <build>
         <plugins>
