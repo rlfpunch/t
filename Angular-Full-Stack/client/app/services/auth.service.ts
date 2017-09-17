@@ -11,7 +11,7 @@ export class AuthService {
 
   jwtHelper: JwtHelper = new JwtHelper();
 
-  currentUser = { _id: '', username: '', lv: null };
+  currentUser = { _id: '', username: '', lv: null, apiKey: null };
 
   constructor(private userService: UserService,
               private router: Router) {
@@ -37,7 +37,7 @@ export class AuthService {
     localStorage.removeItem('token');
     this.loggedIn = false;
     this.isAdmin = false;
-    this.currentUser = { _id: '', username: '', lv: null };
+    this.currentUser = { _id: '', username: '', lv: null, apiKey: null };
     this.router.navigate(['/']);
   }
 
@@ -50,6 +50,7 @@ export class AuthService {
     this.currentUser._id = decodedUser._id;
     this.currentUser.username = decodedUser.username;
     this.currentUser.lv = decodedUser.lv;
+    this.currentUser.apiKey = decodedUser.apiKey;
     decodedUser.email === 'admin'? this.isAdmin = true : this.isAdmin = false;
   }
 
