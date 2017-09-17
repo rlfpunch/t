@@ -33,7 +33,7 @@ export default function setRoutes(app) {
   router.route('/user').post(userCtrl.insert);
   router.route('/user/:id').get(userCtrl.get);
   router.route('/user/:id').put(userCtrl.update);
-  router.route('/user/:id').delete(userCtrl.delete);
+  router.route('/user/:id/:userId').delete(userCtrl.isAdmin, userCtrl.delete);
   
   // algorithms
   router.route('/algorithms/:userId').get(algorithmCtrl.getAll);

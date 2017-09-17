@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
   }
 
   deleteUser(user) {
-    this.userService.deleteUser(user).subscribe(
+    this.userService.deleteUser(user, this.auth.currentUser._id).subscribe(
       data => this.toast.setMessage('user deleted successfully.', 'success'),
       error => console.log(error),
       () => this.getUsers()

@@ -40,8 +40,8 @@ export class UserService {
     return this.http.put(`/api/user/${user._id}`, JSON.stringify(user), this.options);
   }
 
-  deleteUser(user): Observable<any> {
-    return this.http.delete(`/api/user/${user._id}`, this.options);
+  deleteUser(user, userId): Observable<any> {
+    return this.http.delete(`/api/user/${user._id}/` + userId, this.options);
   }
 
 }
