@@ -23,7 +23,7 @@ export class AdminComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getUsers().subscribe(
+    this.userService.getUsers(this.auth.currentUser._id).subscribe(
       data => this.users = data,
       error => console.log(error),
       () => this.isLoading = false

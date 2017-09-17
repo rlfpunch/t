@@ -20,8 +20,8 @@ export class UserService {
     return this.http.post('/api/login', JSON.stringify(credentials), this.options);
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get('/api/users').map(res => res.json());
+  getUsers(userId): Observable<any> {
+    return this.http.get('/api/users/' + userId).map(res => res.json());
   }
 
   countUsers(): Observable<any> {

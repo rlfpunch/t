@@ -10,7 +10,7 @@
         <tr>
           <th>Username</th>
           <th>Email</th>
-          <th>Role</th>
+          <th>Level</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -23,7 +23,7 @@
         <tr *ngFor="let user of users">
           <td>{{user.username}}</td>
           <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
+          <td>{{user.lv}}</td>
           <td>
             <button class="btn btn-sm btn-danger" (click)="deleteUser(user)" [disabled]="auth.currentUser._id === user._id">
               <i class="fa fa-trash"></i>

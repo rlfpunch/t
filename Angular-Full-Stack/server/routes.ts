@@ -28,7 +28,7 @@ export default function setRoutes(app) {
 
   // Users
   router.route('/login').post(userCtrl.login);
-  router.route('/users').get(userCtrl.getAll);
+  router.route('/users/:userId').get(userCtrl.isAdmin, userCtrl.getAll);
   router.route('/users/count').get(userCtrl.count);
   router.route('/user').post(userCtrl.insert);
   router.route('/user/:id').get(userCtrl.get);
@@ -46,10 +46,10 @@ export default function setRoutes(app) {
   // site
   router.route('/sites').get(siteCtrl.getAll);
   router.route('/sites/count').get(siteCtrl.count);
-  router.route('/site').post(siteCtrl.insert);
-  router.route('/site/:id').get(siteCtrl.get);
-  router.route('/site/:id').put(siteCtrl.update);
-  router.route('/site/:id').delete(siteCtrl.delete);
+  router.route('/site/:userId').post(userCtrl.isAdmin, siteCtrl.insert);
+  router.route('/site/:id').get(userCtrl.isAdmin, siteCtrl.get);
+  router.route('/site/:id/:userId').put(userCtrl.isAdmin, siteCtrl.update);
+  router.route('/site/:id/:userId').delete(userCtrl.isAdmin, siteCtrl.delete);
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);
