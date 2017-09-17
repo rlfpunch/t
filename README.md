@@ -24,6 +24,8 @@ angular-cli 이걸로 깔고 'npm i -g @angular/cli'
 
 root 에서 'mvn package install'
 
+만약 web에서 오류가 난다면 web root에서 'npm install'
+
 -------------------------------------------------------------------------------------------
 실행)
 
