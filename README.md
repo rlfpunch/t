@@ -27,11 +27,11 @@ root 에서 'mvn package install'
 -------------------------------------------------------------------------------------------
 실행)
 
-실행은 spring은 'mvn spring-boot:run'
+몽고부터 먼저 올리고 'mongod --dbpath <db경로>' 로 키면 댐
 
-웹은 'npm run dev'
+실행은 spring은 batch밑의 각각 폴더 안에서 'mvn spring-boot:run'
 
-몽고는 켜져있어야하고' mongod --dbpath <db경로>' 로 키면 댐
+웹은 angular 폴더 안에서 'npm run dev'
 
 웹이랑 db올리는거 root 폴더하고 웹폴더 밑에 run.bat 있어서 
 
@@ -40,14 +40,10 @@ eclipse 사용한다면 external tools로 등록해서 사용하면 편함
 --------------------------------------------------------------------------------------------
 추가)
 
-mongo client로는 mongo booster 추천하고
+mongo client로는 https://mongobooster.com/ 추천
 
-웹개발할때 eclipse 쓴다면 
-
+웹개발할때 eclipse 쓴다면 밑에 2개 플러그인 추천
 
 https://github.com/angelozerr/angularjs-eclipse/releases
 
 https://github.com/angelozerr/typescript.java/releases
-
-
-이거 플러그인 쓰면 댐
